@@ -24,6 +24,12 @@
         alert($("#but2").html());
     });
 
+    $("#but4").click(function () {
+
+        alert($("#element2").attr("style"));
+      
+    });
+
     $("p").on({
         mouseenter: function () {
             $(this).css("background-color", "lightgray");
