@@ -25,8 +25,12 @@
     });
 
     $("#but4").click(function () {
+        var text = "";
 
-        alert($("#element2").attr("style"));
+        text += "Width of element1 " + $("#element1").width() + "</br>";
+        text += "Height of element1 " + $("#element1").height();
+        $("#element2").html(text);
+        $("#element1").width(200).height(200);
       
     });
 
