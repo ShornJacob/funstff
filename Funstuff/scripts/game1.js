@@ -1,81 +1,40 @@
-﻿$(document).ready(function () {
-    $("#but1").click(function () {
-        //$("#paraid").toggle(1000);
-        //$("#div1").slideToggle();
-        //$("#div2").fadeToggle("slow");
-        //$("#div3").fadeToggle(3000);
+﻿"use strict";
 
-        $("#element1").animate({left: '+=250px'});
-        $("#element1").animate({top: '+=250px'});
-        $("#element1").animate({left: '-=250px'});
-        $("#element1").animate({top: '-=250px'});   
-    })
+var aContext;
+var canvasWidth;
+var canvasHeight;
 
+$(document).ready(function () {
 
+    myGameArea.start();
 
-    $("#but2").click(function () {
-       
-        $("#element1").stop(true,false);
-    });
-
-    $("#but3").click(function () {
-
-        alert($("#but2").text());
-        alert($("#but2").html());
-    });
-
-    $("#but4").click(function () {
-        var text = "";
-
-        text += "Width of element1 " + $("#element1").width() + "</br>";
-        text += "Height of element1 " + $("#element1").height();
-        $("#element2").html(text);
-        $("#element1").width(200).height(200);
-      
-    });
-
-    $("p").on({
-        mouseenter: function () {
-            $(this).css("background-color", "lightgray");
-        },
-
-        mouseleave: function () {
-            $(this).css("background-color", "lightblue");
-        },
-
-        click: function () {
-            $(this).css("background-color", "yellow")
-        }
-    });
-
-    $("input").on({
-        focus: function () {
-            $(this).css("background-color", "#cccccc");
-        },
-
-        blur: function () {
-            $(this).css("background-color", "#ffffff");
-        }
-
-    
-    });
-
-
+    setInterval(updateGameArea);
 });
 
-   
 
-//$("p").click(function () {
-//    $(this).hide();
-//});
+var myGameArea = new Object();
 
+myGameArea.start = function () {
+    canvasWidth = $("#canvas1").attr("width");
+    canvasHeight = $("#canvas1").attr("height")
+    aContext = $("#canvas1")[0].getContext("2d");
+    }
 
+myGameArea.clear = function () {
 
-//var draw = function () {
-//    var canvas = document.getElementById("tutorial");
-//    var ctx = canvas.getContext("2d");
+    //clear a rectangle within a given rectangle . this clears the whole canvas
+    aContext.clearRect(0, 0, canvasWidth, canvasHeight);
+}
 
-//    ctx.fillStyle = "green";
-//    ctx.fillRect(10, 10, 100, 100);
-//}
+function updateGameArea() {   
+    refreshCanvas(30, 30, "red", 10, 120);
+}
+
+function refreshCanvas(width, height, color, x, y) {
+  
+    aContext.fillStyle = color;
+    //x	The x-coordinate of the upper-left corner of the rectangle
+    //y The y-coordinate of the upper-left corner of the rectangle
+    aContext.fillRect(x, y, width, height);
+}
 

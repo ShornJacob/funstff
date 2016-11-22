@@ -1,6 +1,4 @@
-﻿#element1 {
-    background : #000000;
-    height : 100px;
-    width: 100px;
-    position:relative;
+﻿canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
 }
