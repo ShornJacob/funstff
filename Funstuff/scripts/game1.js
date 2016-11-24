@@ -3,11 +3,13 @@
 
 
 var gameCube;
+var obstacle
 
 $(document).ready(function () {
 
     //create object from constructor function
-    gameCube = new Component(30, 30, "red", 10, 120);
+    gameCube = new Component(30, 30, "green", 10, 120);
+    obstacle = new Component(10, 200, "red", 300, 120);
     gameArea.start(gameCube);
 
     $(document).keydown(function (myEvent) {
@@ -60,9 +62,15 @@ var gameArea = {
 
     refreshCanvas: function () {
 
-        setInterval(updateCanvas, 20);
+       this.interval = setInterval(updateCanvas, 20);
 
+    },
+
+    stop: function () {
+        clearInterval(this.interval);
     }
+
+  
 
 
 
@@ -93,6 +101,25 @@ function Component(width, height, color, x, y) {
         this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
     }
 
+    this.checkCrash = function(otherComponent) {
+        var myLeft = this.posX;
+        var myRight = myLeft + this.width;
+        var myTop = this.posY;
+        var myBottom = myTop + this.height;
+
+        var otherLeft = otherComponent.posX;
+        var otherRight = otherLeft + otherComponent.width;
+        var otherTop = otherComponent.posY;
+        var otherBottom = otherTop + otherComponent.height;
+
+        var crash = false;
+
+        if ((myRight == otherLeft) || (myLeft == otherRight) || (myBottom == otherTop) || (myTop == otherBottom)) {
+            crash = true;
+        }
+
+        return crash;
+    }
     //this.newPos = function () {
     //    this.x += this.posX;
     //    this.y += this.posY;
@@ -101,10 +128,20 @@ function Component(width, height, color, x, y) {
 
 
 function updateCanvas() {
-    //console.log(new Date().getMilliseconds());
-    //clear before update. updates last 20 ms
-    gameArea.clear();
-    gameCube.update();
+
+    if (gameCube.checkCrash(obstacle)) {
+        gameCube.update(); //refresh to crash state before stopping
+        gameArea.stop();
+    }
+    else {
+
+        //console.log(new Date().getMilliseconds());
+        //clear before update. updates last 20 ms
+        gameArea.clear();
+        obstacle.update();
+        gameCube.update();
+
+    }
 
 
 }
