@@ -5,41 +5,7 @@
 var gameCube;
 var obstacle
 
-$(document).ready(function () {
 
-    //create object from constructor function
-    gameCube = new Component(30, 30, "green", 10, 120);
-    obstacle = new Component(10, 200, "red", 300, 120);
-    gameArea.start(gameCube);
-
-    $(document).keydown(function (myEvent) {
-        switch (myEvent.which) {
-            case 37: //left
-                moveLeft();
-                break;
-
-            case 38: //up
-                moveUp();
-                break;
-
-            case 39: //right
-                moveRight();
-                break;
-
-
-            case 40: //down
-                moveDown();
-                break;
-
-            default: return; //exit this handler for other keys
-        }
-        myEvent.preventDefault(); // prevent the default action 
-
-    });
-
-
-
-});
 
 
 
@@ -112,10 +78,10 @@ function Component(width, height, color, x, y) {
         var otherTop = otherComponent.posY;
         var otherBottom = otherTop + otherComponent.height;
 
-        var crash = false;
+        var crash = true;
 
-        if ((myRight == otherLeft) || (myLeft == otherRight) || (myBottom == otherTop) || (myTop == otherBottom)) {
-            crash = true;
+        if ((myRight < otherLeft) || (myLeft > otherRight) || (myBottom < otherTop) ) {
+            crash = false
         }
 
         return crash;
@@ -130,7 +96,10 @@ function Component(width, height, color, x, y) {
 function updateCanvas() {
 
     if (gameCube.checkCrash(obstacle)) {
-        gameCube.update(); //refresh to crash state before stopping
+        //update and refresh to crash state before stopping
+        gameArea.clear();   
+        gameCube.update();
+        obstacle.update();
         gameArea.stop();
     }
     else {
@@ -186,17 +155,4 @@ function moveRight() {
 
 //Angular Part
 
-var app = angular.module('myApp', []);
 
-app.controller('myCtrl', function ($scope) {
-    $scope.cubeSpeedOptions = [
-            { value: 1, name: 'Slow' },
-            { value: 3, name: 'Medium' },
-            { value: 8, name: 'Fast' },
-    ];
-
-    $scope.cubeSpeedChange = function () {
-        gameCube.speed = $scope.selectedCubeSpeed['value'];
-    }
-
-});

@@ -5,7 +5,10 @@
 	<meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="../scripts/game1.js"></script>
+    <script src="../scripts/game1/script_javascript.js"></script>
+    <script src="../scripts/game1/script_jquery.js"></script>
+    <script src="../scripts/game1/script_angular.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../styles/styles.css" rel="stylesheet" />
 </head>
 <body>
@@ -14,12 +17,13 @@
       <p>{{test}}</p>
 
       <div>
-          <label for="speedSelect">Cube Response Speed :</label>
+          <h3><span class="label label-default">Cube Response Speed :</span></h3>
           <select name="speedSelect"
                   ng-init="selectedCubeSpeed = cubeSpeedOptions[1]"                 
                   ng-model="selectedCubeSpeed"
                   ng-options="option.name for option in cubeSpeedOptions"
-                  ng-change="cubeSpeedChange()">
+                  ng-change="cubeSpeedChange()"
+                  class="form-control">
           </select>       
       </div>
       {{selectedCubeSpeed}}
