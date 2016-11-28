@@ -3,7 +3,7 @@
 
 
 var gameCube;
-var obstacle
+var obstacles = [];
 
 
 
@@ -17,8 +17,14 @@ var gameArea = {
         this.canvasWidth = $("#canvas1").attr("width");
         this.canvasHeight = $("#canvas1").attr("height");
         this.context = $("#canvas1")[0].getContext("2d");
+
+        //keep track of frames.updated by refreshCanvas
+        this.frameNo = 0;
+
         //this.gameCube = gameCube
         this.refreshCanvas();
+
+       
     },
 
     clear: function () {
@@ -27,16 +33,14 @@ var gameArea = {
     },
 
     refreshCanvas: function () {
-
-       this.interval = setInterval(updateCanvas, 20);
-
+        this.interval = setInterval(updateCanvas, 20);
     },
 
     stop: function () {
         clearInterval(this.interval);
     }
 
-  
+    
 
 
 
@@ -95,25 +99,62 @@ function Component(width, height, color, x, y) {
 
 function updateCanvas() {
 
-    if (gameCube.checkCrash(obstacle)) {
-        //update and refresh to crash state before stopping
-        gameArea.clear();   
-        gameCube.update();
-        obstacle.update();
-        gameArea.stop();
+    //obstacle Position X and Y
+    var obsposX;
+    var obsposY;
+
+
+    //check for crash
+    for(var i = 0; i < obstacles.length; i += 1) {
+
+        if(gameCube.checkCrash(obstacles[i])) {
+            //cube crashed to obstacle
+            //update and refresh to crash state before stopping
+            gameArea.clear();   
+            gameCube.update();
+            obstacle.update();
+            gameArea.stop();
+            return
+        }
     }
-    else {
 
-        //console.log(new Date().getMilliseconds());
-        //clear before update. updates last 20 ms
-        gameArea.clear();
-        obstacle.update();
-        gameCube.update();
+    //no crash, game continues in the frame 
 
+    //Displays frame on browser console. For Debug.
+    //console.log(new Date().getMilliseconds());
+
+
+    //increment framecount register
+    gameArea.frameNo += 1;
+
+
+    //clear before update.
+    gameArea.clear();
+
+    //create a new obstacle on 1st frame and then on interval
+    if (gameArea.canvas == 1 || checkInterval(150)) {
+
+        //position a obstacle in end of canvas. this is for top left point
+        obsposX = gameArea.canvasWidth
+        obsposY = gameArea.canvasHeight - 200;
+
+        obstacles.push(new Component(10,200,"red",obsposX,obsposY));
     }
 
 
+    //each obstacle moves left every frame
+    for(var i = 0; i < obstacles.length; i += 1) {
+
+        //move obstacle left
+        obstacles[i].x += -1;
+        obstacles[i].update();
+    }
+            
+
+    gameCube.update();
 }
+
+
 
 //functions to increment x and y coordinates
 //y is distance from top left. less distance, the less its further
@@ -147,12 +188,13 @@ function moveRight() {
 }
 
 
-//myGameArea.clear = function () {
+function checkInterval(n) { 
+    if ((gameArea.frameNo / n) % 1 == 0) { return true; }
 
-//    clear a rectangle within a given rectangle . this clears the whole canvas
-//    aContext.clearRect(0, 0, canvasWidth, canvasHeight);
-//}
+    return false;
+}
 
-//Angular Part
+
+
 
 

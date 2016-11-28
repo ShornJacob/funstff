@@ -2,7 +2,7 @@
 
     //create object from constructor function
     gameCube = new Component(30, 30, "green", 10, 120);
-    obstacle = new Component(10, 200, "red", 300, 120);
+
     gameArea.start(gameCube);
 
     $(document).keydown(function (myEvent) {
