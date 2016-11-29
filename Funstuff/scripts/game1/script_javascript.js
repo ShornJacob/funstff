@@ -14,6 +14,7 @@ var gameArea = {
 
 
     start: function (gameCube) {
+        //jQuery
         this.canvasWidth = $("#canvas1").attr("width");
         this.canvasHeight = $("#canvas1").attr("height");
         this.context = $("#canvas1")[0].getContext("2d");
@@ -103,6 +104,8 @@ function updateCanvas() {
     var obsposX;
     var obsposY;
 
+  
+
 
     //check for crash
     for(var i = 0; i < obstacles.length; i += 1) {
@@ -112,7 +115,7 @@ function updateCanvas() {
             //update and refresh to crash state before stopping
             gameArea.clear();   
             gameCube.update();
-            obstacle.update();
+            obstacles[i].update();
             gameArea.stop();
             return
         }
@@ -124,21 +127,43 @@ function updateCanvas() {
     //console.log(new Date().getMilliseconds());
 
 
-    //increment framecount register
-    gameArea.frameNo += 1;
-
+  
 
     //clear before update.
     gameArea.clear();
 
     //create a new obstacle on 1st frame and then on interval
-    if (gameArea.canvas == 1 || checkInterval(150)) {
+    if (gameArea.frameNo == 1 || checkInterval(150)) {
+
+        var startX = parseInt(gameArea.canvasWidth);
+
+        var canvasHeight = parseInt(gameArea.canvasHeight);
+
+        var obsTopMin = 20;
+
+        var obsTopMax = 200;
+
+        var obsTopHeight = Math.floor(Math.random() * (180 + 1)) + obsTopMin;
+
+
+        var obsMinGap = 50;
+
+        var obsMaxGap = 200;
+
+        var gapHeight = Math.floor(Math.random() * (150 + 1)) + obsMaxGap;
+
+     
+
+      
 
         //position a obstacle in end of canvas. this is for top left point
-        obsposX = gameArea.canvasWidth
-        obsposY = gameArea.canvasHeight - 200;
+        //obsposX = parseInt(gameArea.canvasWidth) //canvas Width returned as string
+        //obsposY = gameArea.canvasHeight - 200;
 
-        obstacles.push(new Component(10,200,"red",obsposX,obsposY));
+        //top obstacle. starts at top of canvas.startx = canvasWidth(end of canvas). y =0  starts from top
+        obstacles.push(new Component(10, obsTopHeight, "red", startX, 0));
+
+        obstacles.push(new Component(10, canvasHeight - obsTopHeight - gapHeight, "red", startX, 0));
     }
 
 
@@ -146,10 +171,12 @@ function updateCanvas() {
     for(var i = 0; i < obstacles.length; i += 1) {
 
         //move obstacle left
-        obstacles[i].x += -1;
+        obstacles[i].posX += -1;
         obstacles[i].update();
     }
             
+    //increment framecount register
+    gameArea.frameNo += 1;
 
     gameCube.update();
 }
