@@ -85,7 +85,7 @@ function Component(width, height, color, x, y) {
 
         var crash = true;
 
-        if ((myRight < otherLeft) || (myLeft > otherRight) || (myBottom < otherTop) ) {
+        if ((myRight < otherLeft) || (myLeft > otherRight) || (myBottom < otherTop) || (myTop > otherBottom ) ) {
             crash = false
         }
 
@@ -150,10 +150,13 @@ function updateCanvas() {
 
         var obsMaxGap = 200;
 
-        var gapHeight = Math.floor(Math.random() * (150 + 1)) + obsMaxGap;
+        var gapHeight = Math.floor(Math.random() * (150 + 1)) + obsMinGap;
 
+        var obsBottomHeight = canvasHeight - obsTopHeight - gapHeight; //Bottom obstacle
      
+        var obsBottomX = startX; //both obstacles start at same X location
 
+        var obsBottomY = obsTopHeight + gapHeight; //height of top obstacle plus gap height
       
 
         //position a obstacle in end of canvas. this is for top left point
@@ -163,7 +166,7 @@ function updateCanvas() {
         //top obstacle. starts at top of canvas.startx = canvasWidth(end of canvas). y =0  starts from top
         obstacles.push(new Component(10, obsTopHeight, "red", startX, 0));
 
-        obstacles.push(new Component(10, canvasHeight - obsTopHeight - gapHeight, "red", startX, 0));
+        obstacles.push(new Component(10, obsBottomHeight , "red", obsBottomX, obsBottomY));
     }
 
 
