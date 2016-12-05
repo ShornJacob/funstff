@@ -4,6 +4,7 @@
 
 var gameCube;
 var obstacles = [];
+var myScore;
 
 
 
@@ -20,7 +21,8 @@ var gameArea = {
         this.context = $("#canvas1")[0].getContext("2d");
 
         //keep track of frames.updated by refreshCanvas
-        this.frameNo = 0;
+        //bug fix  - set from 0 to 1.   0 caused check interval to be called
+        this.frameNo = 1;
 
         //this.gameCube = gameCube
         this.refreshCanvas();
@@ -50,8 +52,10 @@ var gameArea = {
 
 //Defining an object type with a constructor function. Use an Initial Capital Letter
 //x	The x-coordinate of the upper-left corner of the rectangle
-//y The y-coordinate of the upper-left corner of the rectangle
-function Component(width, height, color, x, y) {
+//y The y-coordinate of the upper-left corner of the 
+//for text width and heoght will be font and type
+function Component(width, height, color, x, y, type) {
+    this.type = type;
     this.width = width;
     this.height = height;
     this.color = color;
@@ -65,11 +69,21 @@ function Component(width, height, color, x, y) {
         //grab context from gameArea Object
         this.ctx = gameArea.context;
 
-        this.ctx.fillStyle = this.color;
-        //parameters , x,y,width , height
-        //x	the x coordinate of the upper-left corner
-        //same as x and y when game starts
-        this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
+        //check if component id text or Rect
+
+        if (this.type == "text") {
+            this.ctx.font = this.width + " " + this.height;
+            this.ctx.fillStyle = color;
+            this.ctx.fillText(this.text, this.x, this.y);
+        }
+        else {
+            this.ctx.fillStyle = this.color;
+            //parameters , x,y,width , height
+            //x	the x coordinate of the upper-left corner
+            //same as x and y when game starts
+            this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
+        }
+       
     }
 
     this.checkCrash = function(otherComponent) {
@@ -153,6 +167,9 @@ function updateCanvas() {
         var gapHeight = Math.floor(Math.random() * (150 + 1)) + obsMinGap;
 
         var obsBottomHeight = canvasHeight - obsTopHeight - gapHeight; //Bottom obstacle
+
+        //if bottom height is negative, no room for bottom obstacle
+        obsBottomHeight = obsBottomHeight < 0 ? 0 : obsBottomHeight
      
         var obsBottomX = startX; //both obstacles start at same X location
 
@@ -177,6 +194,10 @@ function updateCanvas() {
         obstacles[i].posX += -1;
         obstacles[i].update();
     }
+
+    //set score and update
+    myScore.text = " SCORE: " + gameArea.frameNo;
+    myScore.update();
             
     //increment framecount register
     gameArea.frameNo += 1;
