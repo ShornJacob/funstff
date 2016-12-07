@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //create object from constructor function
-    gameCube = new Component(30, 30, "green", 10, 120);
+    gameCube = new Component(30, 30, "../Images/plane.png", 10, 120, "image");
     myScore = new Component("30px", "Consolas", "black", 280, 40, "text");
 
     gameArea.start(gameCube);
@@ -30,6 +30,19 @@
         myEvent.preventDefault(); // prevent the default action 
 
     });
+
+
+    $(document).keyup(function (myEvent) {
+        //when up or down key is done , plane image should be made straight
+        if(myEvent.which == 38 || myEvent.which == 40) {
+            clearMove();
+        }
+        myEvent.preventDefault(); // prevent the default action 
+
+    });
+
+
+
 
 
 

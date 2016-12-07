@@ -54,6 +54,7 @@ var gameArea = {
 //x	The x-coordinate of the upper-left corner of the rectangle
 //y The y-coordinate of the upper-left corner of the 
 //for text width and heoght will be font and type
+//for image color as image ssource
 function Component(width, height, color, x, y, type) {
     this.type = type;
     this.width = width;
@@ -65,6 +66,11 @@ function Component(width, height, color, x, y, type) {
     this.y = y;
     this.speed = 5;
 
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+    }
+
     this.update = function () {
         //grab context from gameArea Object
         this.ctx = gameArea.context;
@@ -75,6 +81,9 @@ function Component(width, height, color, x, y, type) {
             this.ctx.font = this.width + " " + this.height;
             this.ctx.fillStyle = color;
             this.ctx.fillText(this.text, this.x, this.y);
+        }
+        else if (this.type == "image") {
+            this.ctx.drawImage(this.image, this.posX,this.posY,this.width, this.height)
         }
         else {
             this.ctx.fillStyle = this.color;
@@ -207,19 +216,22 @@ function updateCanvas() {
 
 
 
+
 //functions to increment x and y coordinates
 //y is distance from top left. less distance, the less its further
 function moveUp() {
 
     if (gameCube.posY != 0) {
+        gameCube.image.src = "../Images/plane_up.png";
         gameCube.posY -= gameCube.speed;
     }
-
 }
 
 
 function moveDown() {
-    if (gameCube.posY != (gameArea.canvasHeight - gameCube.height) ){
+    if (gameCube.posY != (gameArea.canvasHeight - gameCube.height)) {
+
+        gameCube.image.src = "../Images/plane_down.png";
         gameCube.posY += gameCube.speed;
     } 
 }
@@ -238,6 +250,9 @@ function moveRight() {
     
 }
 
+function clearMove() {
+    gameCube.image.src = "../Images/plane.png"
+}
 
 function checkInterval(n) { 
     if ((gameArea.frameNo / n) % 1 == 0) { return true; }

@@ -93,6 +93,9 @@
   <ItemGroup>
     <Content Include="Games\Game1.html" />
     <Content Include="Images\img.png" />
+    <Content Include="Images\plane.png" />
+    <Content Include="Images\plane_down.png" />
+    <Content Include="Images\plane_up.png" />
     <Content Include="lab.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
