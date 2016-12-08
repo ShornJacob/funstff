@@ -91,7 +91,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Games\Game1.html" />
+    <Content Include="Games\Airplane.html" />
     <Content Include="Images\img.png" />
     <Content Include="Images\plane.png" />
     <Content Include="Images\plane_down.png" />

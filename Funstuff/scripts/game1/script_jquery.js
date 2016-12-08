@@ -8,9 +8,15 @@
 
     $(document).keydown(function (myEvent) {
         switch (myEvent.which) {
-            case 37: //left
-                moveLeft();
+
+            case 32: //left
+                pauseGame();
                 break;
+
+              //game shoudnt allow plane moving back. commented out
+            //case 37: //left
+            //    moveLeft();
+            //    break;
 
             case 38: //up
                 moveUp();

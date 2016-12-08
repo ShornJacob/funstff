@@ -24,6 +24,8 @@ var gameArea = {
         //bug fix  - set from 0 to 1.   0 caused check interval to be called
         this.frameNo = 1;
 
+        this.pause = false;
+
         //this.gameCube = gameCube
         this.refreshCanvas();
 
@@ -122,6 +124,12 @@ function Component(width, height, color, x, y, type) {
 
 
 function updateCanvas() {
+
+    //if in pause mode , dont update anything
+    if (gameArea.pause == true) {
+        return;
+    }
+
 
     //obstacle Position X and Y
     var obsposX;
@@ -260,6 +268,11 @@ function checkInterval(n) {
     return false;
 }
 
+function pauseGame() {
+
+    //terniatry operator for pausing, resuming
+    gameArea.pause == true ? gameArea.pause = false : gameArea.pause = true;
+}
 
 
 
