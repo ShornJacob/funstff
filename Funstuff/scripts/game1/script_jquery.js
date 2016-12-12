@@ -47,9 +47,19 @@
 
     });
 
+    $("#container").on("swipeleft", function () {
+        alert();
 
+    });
 
+ 
 
+    $("#container").swipe({
+       
+        swipeDown: function (event, direction, distance, duration, fingerCount) {
+            alert();
+        }
+    })
 
 
 });
