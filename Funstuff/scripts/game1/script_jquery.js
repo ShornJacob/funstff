@@ -13,10 +13,10 @@
                 pauseGame();
                 break;
 
-              //game shoudnt allow plane moving back. commented out
-            //case 37: //left
-            //    moveLeft();
-            //    break;
+            
+            case 37: //left
+                moveLeft();
+                break;
 
             case 38: //up
                 moveUp();
@@ -47,17 +47,53 @@
 
     });
 
-    $("#container").on("swipeleft", function () {
-        alert();
+  
 
-    });
-
- 
+    //touchSwipe
 
     $("#container").swipe({
        
-        swipeDown: function (event, direction, distance, duration, fingerCount) {
-            alert();
+        swipe : function (event, direction, distance, duration, fingerCount) {
+            switch (direction) {
+
+                //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
+
+                case 'left': //left
+
+                    for( i=0; i < distance/10 ; i++) {
+                        moveLeft();
+                    }    
+                    
+                    break;
+
+
+                case 'right': //right
+                    for (i = 0; i < distance / 10 ; i++) {
+                        moveRight();
+                    }
+
+                    break;
+
+
+                    //reset to straight picture using clearMove
+                case 'up': //up
+                    for (i = 0; i < distance / 10 ; i++) {
+                        moveUp();
+                    }
+                    setTimeout(clearMove, 500);
+                    break;
+
+                case 'down': //down
+                    for (i = 0; i < distance / 10 ; i++) {
+                        moveDown();
+                    }
+                    setTimeout(clearMove, 500);
+                    break;
+
+
+
+                default: return; //exit this handler for other keys
+            }
         }
     })
 
