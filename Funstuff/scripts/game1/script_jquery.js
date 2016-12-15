@@ -61,7 +61,7 @@
                 case 'left': //left
 
                     for( i=0; i < distance/10 ; i++) {
-                        moveLeft();
+                        setTimeout(moveLeft, 300);
                     }    
                     
                     break;
@@ -69,7 +69,7 @@
 
                 case 'right': //right
                     for (i = 0; i < distance / 10 ; i++) {
-                        moveRight();
+                        setTimeout(moveRight, 300);
                     }
 
                     break;
@@ -78,14 +78,14 @@
                     //reset to straight picture using clearMove
                 case 'up': //up
                     for (i = 0; i < distance / 10 ; i++) {
-                        moveUp();
+                        setTimeout(moveUp, 300);
                     }
                     setTimeout(clearMove, 500);
                     break;
 
                 case 'down': //down
                     for (i = 0; i < distance / 10 ; i++) {
-                        moveDown();
+                        setTimeout(moveDown, 300);
                     }
                     setTimeout(clearMove, 500);
                     break;
