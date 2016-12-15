@@ -59,7 +59,7 @@
                 //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
 
                 case 'left': //left
-                    if (distance < 10) {
+                    if (distance < 80) {
                         moveLeft();
                     }
                     else {
@@ -73,7 +73,7 @@
 
 
                 case 'right': //right
-                    if (distance < 10) {
+                    if (distance < 80) {
                         moveRight();
                     }
                     else {
@@ -86,7 +86,7 @@
 
                     //reset to straight picture using clearMove
                 case 'up': //up
-                    if (distance < 10) {
+                    if (distance < 80) {
                         moveUp();
                         clearMove();
                     }
@@ -101,7 +101,7 @@
                     break;
 
                 case 'down': //down
-                    if (distance < 10) {
+                    if (distance < 80) {
                         moveDown();
                         clearMove();
                     }
