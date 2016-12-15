@@ -3,12 +3,13 @@
 <head>
     <title>Game 1</title>
 	<meta charset="utf-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
     <script src="../scripts/game1/script_javascript.js"></script>
-    <script src="../scripts/game1/script_jquery.js"></script>
     <script src="../scripts/game1/script_angular.js"></script>
+    <script src="../scripts/game1/script_jquery.js"></script>
+ 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../styles/styles.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +37,7 @@
       <p>Air plane cannot move backward.</p>
       <p>Spacebar to Pause / Resume.</p>
       <p>F5 to Restart / Refresh.</p>
-      <p id="info" ></p>
+      <p id="info" >{{swipeDist}}</p>
   </div>
 
 </body>

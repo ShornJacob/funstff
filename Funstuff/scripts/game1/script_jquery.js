@@ -59,58 +59,25 @@
                 //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
 
                 case 'left': //left
-                    if (distance < 80) {
-                        moveLeft();
-                    }
-                    else {
-                        for (i = 0; i < distance / 10 ; i++) {
-                            setTimeout(moveLeft, 300);
-                        }
-                    }
-                     
-                    
+                    $('#container').scope().get().swipeDist(distance);
+                    $('#container').scope().get().$apply();
                     break;
 
 
                 case 'right': //right
-                    if (distance < 80) {
-                        moveRight();
-                    }
-                    else {
-                        for (i = 0; i < distance / 10 ; i++) {
-                            setTimeout(moveRight, 300);
-                        }
-                    }
+                 
                     break;
 
 
                     //reset to straight picture using clearMove
                 case 'up': //up
-                    if (distance < 80) {
-                        moveUp();
-                        clearMove();
-                    }
-                    else {
-                        for (i = 0; i < distance / 10 ; i++) {
-                            setTimeout(moveUp, 300);
-                        }
-                        setTimeout(clearMove, 500);
-                    }
+                   
                    
                    
                     break;
 
                 case 'down': //down
-                    if (distance < 80) {
-                        moveDown();
-                        clearMove();
-                    }
-                    else {
-                        for (i = 0; i < distance / 10 ; i++) {
-                            setTimeout(moveDown, 300);
-                        }
-                        setTimeout(clearMove, 500);
-                    }
+                 
                    
                   
                     break;
