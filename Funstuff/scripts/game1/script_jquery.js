@@ -64,7 +64,8 @@
 
 
                 case 'right': //right
-
+                    angular.element($('#container')).scope().displaySwipeDist(distance)
+                    angular.element($('#container')).scope().$apply();
                     break;
 
 
