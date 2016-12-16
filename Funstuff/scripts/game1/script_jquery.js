@@ -77,7 +77,9 @@
                     break;
 
                 case 'down': //down
-
+                    angular.element($('#container')).scope().displaySwipeDist(distance)
+                    angular.element($('#container')).scope().$apply();
+                    break;
 
 
                     break;
