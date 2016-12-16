@@ -71,7 +71,7 @@
 
                     //reset to straight picture using clearMove
                 case 'up': //up
-
+                
 
 
                     break;
@@ -79,10 +79,14 @@
                 case 'down': //down
                     angular.element($('#container')).scope().displaySwipeDist(distance)
                     angular.element($('#container')).scope().$apply();
+                    if (distance < 100) {
+                        moveDown();
+                    }
+                  
                     break;
 
 
-                    break;
+         
 
 
 
