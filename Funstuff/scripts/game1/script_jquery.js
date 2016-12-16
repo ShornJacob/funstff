@@ -48,38 +48,37 @@
     });
 
   
-
-    //touchSwipe
+    //touchSwipe - enable swipe 
 
     $("#container").swipe({
-       
-        swipe : function (event, direction, distance, duration, fingerCount) {
+
+        swipe: function (event, direction, distance, duration, fingerCount) {
             switch (direction) {
 
                 //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
 
                 case 'left': //left
-                    $('#container').scope().get().swipeDist(distance);
-                    $('#container').scope().get().$apply();
+                    angular.element($('#container')).scope().displaySwipeDist(distance)
+                    angular.element($('#container')).scope().$apply();
                     break;
 
 
                 case 'right': //right
-                 
+
                     break;
 
 
                     //reset to straight picture using clearMove
                 case 'up': //up
-                   
-                   
-                   
+
+
+
                     break;
 
                 case 'down': //down
-                 
-                   
-                  
+
+
+
                     break;
 
 
@@ -91,3 +90,6 @@
 
 
 });
+
+
+

@@ -11,7 +11,7 @@ app.controller('myCtrl', function ($scope) {
         gameCube.speed = $scope.selectedCubeSpeed['value'];
     }
 
-    function displaySwipeDist(dist) {
+    $scope.displaySwipeDist = function (dist) {
         $scope.swipeDist = dist;
     }
 
