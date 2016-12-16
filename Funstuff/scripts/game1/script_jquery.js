@@ -14,9 +14,9 @@
                 break;
 
             
-            case 37: //left
-                moveLeft();
-                break;
+            //case 37: //left
+            //    moveLeft();
+            //    break;
 
             case 38: //up
                 moveUp();
@@ -50,50 +50,51 @@
   
     //touchSwipe - enable swipe 
 
-    $("#container").swipe({
+    //$("#container").swipe({
 
-        swipe: function (event, direction, distance, duration, fingerCount) {
-            switch (direction) {
+    //    swipe: function (event, direction, distance, duration, fingerCount) {
+    //        switch (direction) {
 
-                //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
+    //            //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
 
-                case 'left': //left
-                    angular.element($('#container')).scope().displaySwipeDist(distance)
-                    angular.element($('#container')).scope().$apply();
-                    break;
-
-
-                case 'right': //right
-                    angular.element($('#container')).scope().displaySwipeDist(distance)
-                    angular.element($('#container')).scope().$apply();
-                    break;
+    //            case 'left': //left
+    //                angular.element($('#container')).scope().displaySwipeDist(distance)
+    //                angular.element($('#container')).scope().$apply();
+    //                break;
 
 
-                    //reset to straight picture using clearMove
-                case 'up': //up
+    //            case 'right': //right
+    //                angular.element($('#container')).scope().displaySwipeDist(distance)
+    //                angular.element($('#container')).scope().$apply();
+    //                break;
+
+
+    //                //reset to straight picture using clearMove
+    //            case 'up': //up
                 
 
 
-                    break;
+    //                break;
 
-                case 'down': //down
-                    angular.element($('#container')).scope().displaySwipeDist(distance)
-                    angular.element($('#container')).scope().$apply();
-                    if (distance < 100) {
-                        moveDown();
-                    }
+    //            case 'down': //down
+    //                angular.element($('#container')).scope().displaySwipeDist(distance)
+    //                angular.element($('#container')).scope().$apply();
+    //                if (distance < 100) {
+    //                    moveDown();
+    //                    movedown
+    //                }
                   
-                    break;
+    //                break;
 
 
          
 
 
 
-                default: return; //exit this handler for other keys
-            }
-        }
-    })
+    //            default: return; //exit this handler for other keys
+    //        }
+    //    }
+    //})
 
 
 });
