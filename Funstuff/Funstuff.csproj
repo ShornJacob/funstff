@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Games\Airplane.html" />
+    <Content Include="Games\Snake.html" />
     <Content Include="Images\img.png" />
     <Content Include="Images\plane.png" />
     <Content Include="Images\plane_down.png" />
@@ -115,6 +116,7 @@
     <Content Include="scripts\game1\script_angular.js" />
     <Content Include="scripts\game1\script_javascript.js" />
     <Content Include="scripts\game1\script_jquery.js" />
+    <Content Include="scripts\game2\script_jquery.js" />
     <Content Include="scripts\JavaScript.js" />
     <Content Include="styles\styles.css" />
     <Content Include="Web.config" />
@@ -122,6 +124,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
