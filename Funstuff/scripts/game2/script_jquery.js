@@ -18,4 +18,34 @@
 
 
     var snake_array; //an array of cells to make up the snake
+
+    function create_snake()
+    {
+        //length of the snake
+        var length = 5;
+
+        //Empty array to start with
+        snake_array = [];
+
+        for(var i=length-1; i>=0; i--)
+        {
+            //horizontal snake starting from top left
+            snake_array.push({ x: i, y: 0 });
+        }
+
+    }
+
+    function create_food()
+    {
+        food = {
+            x: Math.round(Math.random() * (w - cw) / cw),
+            y: Math.round(Math.random() * (h - cw) / cw),
+        };
+    }
+
+    function init() {
+
+        //default direction
+        d = "right";
+    }
 })
