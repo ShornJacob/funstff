@@ -7,11 +7,11 @@
     var ctx = canvas.getContext("2d");
 
     //access the properties of element from jquery object
-    var w = $("#canvas").width();
-    var h = $("#canvas").height();
+    var canvas_width = $("#canvas").width();
+    var canvas_height = $("#canvas").height();
 
-    //cell width 
-    var cw = 10;
+
+    var cell_width = 10;
     var d;
     var food;
     var score;
@@ -37,6 +37,7 @@
 
     function create_food()
     {
+        //object literal notation for an object with x and y
         food = {
             x: Math.round(Math.random() * (w - cw) / cw),
             y: Math.round(Math.random() * (h - cw) / cw),

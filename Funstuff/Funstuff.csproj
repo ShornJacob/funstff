@@ -116,6 +116,7 @@
     <Content Include="scripts\game1\script_angular.js" />
     <Content Include="scripts\game1\script_javascript.js" />
     <Content Include="scripts\game1\script_jquery.js" />
+    <Content Include="scripts\game2\script_javascript.js" />
     <Content Include="scripts\game2\script_jquery.js" />
     <Content Include="scripts\JavaScript.js" />
     <Content Include="styles\styles.css" />
