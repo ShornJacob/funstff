@@ -9,9 +9,11 @@ var snake_array;
 var direction;
 var score;
 var game_loop;
+var food;
 
 function init() {
     direction = "right";
+    cell_width = 10;
 
     create_snake();
     create_food();
@@ -24,6 +26,8 @@ function init() {
     game_loop = setInterval(paint, 60);
 }
 
+//done only once, not called in refresh
+//first array element is 4,0  which is the last cell(head) of snake. snake is painted from head to back
 function create_snake() {
     //length of the snake
     var length = 5;
@@ -53,33 +57,61 @@ function paint() {
 
     ctx.fillStyle = "white";
 
-    ctx.FillRect(0, 0, canvas_width, cell_height);
+    ctx.fillRect(0, 0, canvas_width, canvas_height);
 
     ctx.strokeStyle = "black";
 
     //stroke - the  border around rectangle . hit for snake
-    ctx.strokeRect(0, 0, w, h);
+    ctx.strokeRect(0, 0, canvas_width, canvas_height);
 
 
-    //x and y of first cell
-    var firstx = snake_array[0].x;
-    var firsty = snake_array[0].y;
+    //x and y of next move
+    //snake_array[0] is the head, first to be drawn
+    var nextx = snake_array[0].x;
+    var nexty = snake_array[0].y;
 
     //pushes the first cell start point by one based on direction
     //changes eithr x or y
-    if (d == "right") {
+    if (direction == "right") {
         //moving left. add startx by 1;
-        nx++;
+        nextx++;
     }
-    else if (d == "left") {
+    else if (direction == "left") {
         //moving left. reduce startx by 1;
-        nx--;
+        nextx--;
     }
-    else if (d == "up") {
-        ny--;
+    else if (direction == "up") {
+        nexty--;
     }
-    else if (d == "down") {
-        ny++;
+    else if (direction == "down") {
+        nexty++;
     }
+
+    //paint snake
+    for(var i=0;i<snake_array.length;i++)
+    {
+        var c = snake_array[i];
+
+        paint_cell(c.x, c.y);
+    }
+
+    //pops out the last array cell of snake ,drawn last. since snake moves
+    var tail = snake_array.pop();
+
+    //reuses the tail object and sets its x and y. sets it to the next cell whre snake should be moving
+    tail.x = nextx;
+    tail.y = nexty;
+
+    //unshift is a js function. instead of push it puts elemnets to 0 location. first cell to be drawn
+    snake_array.unshift(tail);
+}
+
+//x and y 0-44
+function paint_cell(x,y)
+{
+    ctx.fillStyle = "blue";
+
+    //cell_width set at 10
+    ctx.fillRect(x * cell_width, y * cell_width, cell_width, cell_width);
 }
 

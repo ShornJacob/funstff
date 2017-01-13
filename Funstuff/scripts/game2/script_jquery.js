@@ -10,4 +10,5 @@
     canvas_width = $("#canvas").width();
     canvas_height = $("#canvas").height();
 
+    init();
 })
