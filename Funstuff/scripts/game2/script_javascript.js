@@ -104,6 +104,15 @@ function paint() {
 
     //unshift is a js function. instead of push it puts elemnets to 0 location. first cell to be drawn
     snake_array.unshift(tail);
+
+
+    //check hitting the wall
+    if (nextx == -1 || nextx == canvas_width / cell_width || nexty == -1 || nexty == canvas_height / cell_width) {
+
+        //restart game
+        init();
+        return;
+    }
 }
 
 //x and y 0-44
