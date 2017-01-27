@@ -36,12 +36,13 @@ function create_snake() {
     snake_array = [];
 
     for (var i = length - 1; i >= 0; i--) {
-        //horizontal snake starting from top left
+        //horizontal snake starting from top left. head is first cell. tail is last
         snake_array.push({ x: i, y: 0 });
     }
 
 }
 
+//random coordinates for food. does not paint them
 function create_food() {
     //object literal notation for an object with x and y
     // (450-10)/10  = 440/10 = 44
@@ -50,6 +51,9 @@ function create_food() {
         x: Math.round(Math.random() * ((canvas_width - cell_width) / cell_width)),
         y: Math.round(Math.random() * ((canvas_height - cell_width) / cell_width)),
     };
+
+ 
+    
 }
 
 function paint() {
@@ -87,7 +91,7 @@ function paint() {
         nexty++;
     }
 
-    //paint snake
+    //paint snake. head is drawn first. tail is last
     for(var i=0;i<snake_array.length;i++)
     {
         var c = snake_array[i];
@@ -95,14 +99,31 @@ function paint() {
         paint_cell(c.x, c.y);
     }
 
-    //pops out the last array cell of snake ,drawn last. since snake moves
-    var tail = snake_array.pop();
+    //food also has to be refreshed
+    paint_cell(food.x, food.y);
 
-    //reuses the tail object and sets its x and y. sets it to the next cell whre snake should be moving
-    tail.x = nextx;
-    tail.y = nexty;
+
+    //if snake hits food
+    if(nextx == food.x && nexty==food.y) {
+        //snake grows
+        //name tail is used just so that it uses the same variable in else part. should be named head
+        var tail = { x: food.x, y: food.y }
+        //create new food if snake hits the food
+        create_food()
+    }
+    else {
+        //move where sname does not grow
+        //pops out the last array cell of snake ,drawn last. since snake moves. 
+        var tail = snake_array.pop();
+
+        //reuses the tail object and sets its x and y (the next head, tail becomes the next head) . sets it to the next cell whre snake should be moving
+        tail.x = nextx;
+        tail.y = nexty;
+    }
+  
 
     //unshift is a js function. instead of push it puts elemnets to 0 location. first cell to be drawn
+    //when food is consumed tail is food location. makes it first cell to be drawn. in this case it should have been called head since this is the first cell to be snake array and first to be drawn
     snake_array.unshift(tail);
 
 
