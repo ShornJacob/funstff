@@ -15,10 +15,17 @@
     $(document).keydown(function (e) {
         var key = e.which;
 
-        if (key == "37" && direction != "right") direction = "left";
-        else if (key == "38" && direction != "down") direction = "up";
-        else if (key == "39" && direction != "left") direction = "right";
-        else if (key == "40" && direction != "up") direction = "down";
+        //this flicks pause status
+        if (key == "32") pauseGame();
+
+        //direction keys are  valid when game is not paused
+        if (pause == false) {
+            if (key == "37" && direction != "right") direction = "left";
+            else if (key == "38" && direction != "down") direction = "up";
+            else if (key == "39" && direction != "left") direction = "right";
+            else if (key == "40" && direction != "up") direction = "down";
+        }
+       
     })
 
 })

@@ -10,8 +10,10 @@ var direction;
 var score;
 var game_loop;
 var food;
+var pause;
 
 function init() {
+    pause = false;
     direction = "right";
     cell_width = 10;
 
@@ -30,6 +32,7 @@ function init() {
 //first array element is 4,0  which is the last cell(head) of snake. snake is painted from head to back
 function create_snake() {
     //length of the snake
+    //check with a greater number like 25 for collison to itself test
     var length = 5;
 
     //Empty array to start with
@@ -57,6 +60,11 @@ function create_food() {
 }
 
 function paint() {
+
+    //if in pause mode , dont update anything
+    if (pause == true) {
+        return;
+    }
 
 
     ctx.fillStyle = "white";
@@ -128,7 +136,7 @@ function paint() {
 
 
     //check hitting the wall
-    if (nextx == -1 || nextx == canvas_width / cell_width || nexty == -1 || nexty == canvas_height / cell_width) {
+    if (nextx == -1 || nextx == canvas_width / cell_width || nexty == -1 || nexty == canvas_height / cell_width || check_collision(nextx, nexty,snake_array) ) {
 
         //restart game
         init();
@@ -145,3 +153,23 @@ function paint_cell(x,y)
     ctx.fillRect(x * cell_width, y * cell_width, cell_width, cell_width);
 }
 
+function check_collision(x,y, array)
+{
+    //Check if x or y exists in array
+    //Or if the nextx abd nexty is in sname array. ie if the sname if moving to itself
+    //return true if collision
+
+    //starts from 1. 0 index contains next move co-ordinates which  when checked causes collison
+    for(var i = 1; i < array.length; i++)
+    {
+        if (array[i].x == x && array[i].y == y) return true;
+    }
+
+    return false
+}
+
+function pauseGame() {
+
+    //terniatry operator for pausing, resuming
+    pause == true ? pause = false : pause = true;
+}
