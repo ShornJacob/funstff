@@ -110,12 +110,19 @@ function paint() {
     //food also has to be refreshed
     paint_cell(food.x, food.y);
 
+    //paint score
+    paintscore();
+
 
     //if snake hits food
     if(nextx == food.x && nexty==food.y) {
         //snake grows
         //name tail is used just so that it uses the same variable in else part. should be named head
         var tail = { x: food.x, y: food.y }
+
+        //incrase score by 100
+        score = score + 100;
+
         //create new food if snake hits the food
         create_food()
     }
@@ -172,4 +179,10 @@ function pauseGame() {
 
     //terniatry operator for pausing, resuming
     pause == true ? pause = false : pause = true;
+}
+
+function paintscore() {
+    var score_text = "Score: " + score;
+    //passed with x and y co-ordinate to start painting
+    ctx.fillText(score_text, 5, canvas_height - 5);
 }
