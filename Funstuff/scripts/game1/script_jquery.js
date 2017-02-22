@@ -48,54 +48,7 @@
     });
 
   
-    //touchSwipe - enable swipe 
-
-    //$("#container").swipe({
-
-    //    swipe: function (event, direction, distance, duration, fingerCount) {
-    //        switch (direction) {
-
-    //            //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
-
-    //            case 'left': //left
-    //                angular.element($('#container')).scope().displaySwipeDist(distance)
-    //                angular.element($('#container')).scope().$apply();
-    //                break;
-
-
-    //            case 'right': //right
-    //                angular.element($('#container')).scope().displaySwipeDist(distance)
-    //                angular.element($('#container')).scope().$apply();
-    //                break;
-
-
-    //                //reset to straight picture using clearMove
-    //            case 'up': //up
-                
-
-
-    //                break;
-
-    //            case 'down': //down
-    //                angular.element($('#container')).scope().displaySwipeDist(distance)
-    //                angular.element($('#container')).scope().$apply();
-    //                if (distance < 100) {
-    //                    moveDown();
-    //                    movedown
-    //                }
-                  
-    //                break;
-
-
-         
-
-
-
-    //            default: return; //exit this handler for other keys
-    //        }
-    //    }
-    //})
-
+  
 
 });
 

@@ -28,4 +28,44 @@
        
     })
 
+
+    //touchSwipe - enable swipe 
+
+    $("#container").swipe({
+
+        swipe: function (event, direction, distance, duration, fingerCount) {
+            switch (direction) {
+
+                //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
+
+                case 'left': //left
+                    if (direction != "right") direction = "left";
+                    break;
+
+
+                case 'right': //right
+                    if (direction != "left") direction = "right";
+                    break;
+
+
+                    //reset to straight picture using clearMove
+                case 'up': //up
+                    if (direction != "up") direction = "down";
+                    break;
+
+                case 'down': //down
+                  
+                    break;
+
+
+
+
+
+
+                default: return; //exit this handler for other keys
+            }
+        }
+    })
+
+
 })
