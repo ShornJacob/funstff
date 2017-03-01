@@ -61,8 +61,16 @@
 
                 default: return; //exit this handler for other keys
             }
-        }
+        },
+
+        //default is 75.
+        //The number of pixels that the user must move their finger by before it is considered a swipe.
+        threshold:10
+
     })
 
 
 })
+
+
+
