@@ -6,7 +6,7 @@ var canvas_width;
 var canvas_height;
 var cell_width;
 var snake_array;
-var direction;
+var snake_direction;
 var score;
 var game_loop;
 var food;
@@ -14,7 +14,7 @@ var pause;
 
 function init() {
     pause = false;
-    direction = "right";
+    snake_direction = "right";
     cell_width = 10;
 
     create_snake();
@@ -82,20 +82,20 @@ function paint() {
     var nextx = snake_array[0].x;
     var nexty = snake_array[0].y;
 
-    //pushes the first cell start point by one based on direction
+    //pushes the first cell start point by one based on snake_direction
     //changes eithr x or y
-    if (direction == "right") {
+    if (snake_direction == "right") {
         //moving left. add startx by 1;
         nextx++;
     }
-    else if (direction == "left") {
+    else if (snake_direction == "left") {
         //moving left. reduce startx by 1;
         nextx--;
     }
-    else if (direction == "up") {
+    else if (snake_direction == "up") {
         nexty--;
     }
-    else if (direction == "down") {
+    else if (snake_direction == "down") {
         nexty++;
     }
 

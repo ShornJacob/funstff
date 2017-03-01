@@ -20,10 +20,10 @@
 
         //direction keys are  valid when game is not paused
         if (pause == false) {
-            if (key == "37" && direction != "right") direction = "left";
-            else if (key == "38" && direction != "down") direction = "up";
-            else if (key == "39" && direction != "left") direction = "right";
-            else if (key == "40" && direction != "up") direction = "down";
+            if (key == "37" && snake_direction != "right") snake_direction = "left";
+            else if (key == "38" && snake_direction != "down") snake_direction = "up";
+            else if (key == "39" && snake_direction != "left") snake_direction = "right";
+            else if (key == "40" && snake_direction != "up") snake_direction = "down";
         }
        
     })
@@ -39,28 +39,25 @@
                 //distance paramteter moves the plane far too much. some othe unit suspected. divide by 10 
 
                 case 'left': //left
-                    if (direction != "right") direction = "left";
+                    if (snake_direction != "right") snake_direction = "left";
                     break;
 
 
                 case 'right': //right
-                    if (direction != "left") direction = "right";
+                    if (snake_direction != "left") snake_direction = "right";
                     break;
 
 
                     //reset to straight picture using clearMove
                 case 'up': //up
-                    if (direction != "up") direction = "down";
+                    if (snake_direction != "down") snake_direction = "up";
                     break;
 
-                case 'down': //down
+     
+                case 'down': //up
+                    if (snake_direction != "up") snake_direction = "down";
+                    break;
                   
-                    break;
-
-
-
-
-
 
                 default: return; //exit this handler for other keys
             }
