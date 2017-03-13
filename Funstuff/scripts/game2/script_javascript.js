@@ -7,25 +7,50 @@ var canvas_height;
 var cell_width;
 var snake_array;
 var snake_direction;
-var score;
 var game_loop;
 var food;
 var pause;
+var levels;
+var refreshrate;
+var widths;
+var score;
 
 function init() {
+
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+
+
+    canvas_width = canvas.width;
+    canvas_height = canvas.height;
+
     pause = false;
     snake_direction = "right";
-    cell_width = 10;
+  
 
     create_snake();
+
+    //creates first food
     create_food();
 
     score = 0;
 
+    //Key Value , Score:Refreshrate
+    levels = {
+        0: 240,
+        300: 120,
+        600: 60
+    };
+
+    widths = {
+        0: 30,
+        300: 20,
+        600: 10
+    }
     //timer that trigers paint function
 
-    if (typeof game_loop != "undefined") clearInterval(game_loop);
-    game_loop = setInterval(paint, 60);
+    //if (typeof game_loop != "undefined") clearInterval(game_loop);
+    //game_loop = setInterval(paint, 60);
 }
 
 //done only once, not called in refresh
@@ -59,97 +84,7 @@ function create_food() {
     
 }
 
-function paint() {
 
-    //if in pause mode , dont update anything
-    if (pause == true) {
-        return;
-    }
-
-
-    ctx.fillStyle = "white";
-
-    ctx.fillRect(0, 0, canvas_width, canvas_height);
-
-    ctx.strokeStyle = "black";
-
-    //stroke - the  border around rectangle . hit for snake
-    ctx.strokeRect(0, 0, canvas_width, canvas_height);
-
-
-    //x and y of next move
-    //snake_array[0] is the head, first to be drawn
-    var nextx = snake_array[0].x;
-    var nexty = snake_array[0].y;
-
-    //pushes the first cell start point by one based on snake_direction
-    //changes eithr x or y
-    if (snake_direction == "right") {
-        //moving left. add startx by 1;
-        nextx++;
-    }
-    else if (snake_direction == "left") {
-        //moving left. reduce startx by 1;
-        nextx--;
-    }
-    else if (snake_direction == "up") {
-        nexty--;
-    }
-    else if (snake_direction == "down") {
-        nexty++;
-    }
-
-    //paint snake. head is drawn first. tail is last
-    for(var i=0;i<snake_array.length;i++)
-    {
-        var c = snake_array[i];
-
-        paint_cell(c.x, c.y);
-    }
-
-    //food also has to be refreshed
-    paint_cell(food.x, food.y);
-
-    //paint score
-    paintscore();
-
-
-    //if snake hits food
-    if(nextx == food.x && nexty==food.y) {
-        //snake grows
-        //name tail is used just so that it uses the same variable in else part. should be named head
-        var tail = { x: food.x, y: food.y }
-
-        //incrase score by 100
-        score = score + 100;
-
-        //create new food if snake hits the food
-        create_food()
-    }
-    else {
-        //move where sname does not grow
-        //pops out the last array cell of snake ,drawn last. since snake moves. 
-        var tail = snake_array.pop();
-
-        //reuses the tail object and sets its x and y (the next head, tail becomes the next head) . sets it to the next cell whre snake should be moving
-        tail.x = nextx;
-        tail.y = nexty;
-    }
-  
-
-    //unshift is a js function. instead of push it puts elemnets to 0 location. first cell to be drawn
-    //when food is consumed tail is food location. makes it first cell to be drawn. in this case it should have been called head since this is the first cell to be snake array and first to be drawn
-    snake_array.unshift(tail);
-
-
-    //check hitting the wall
-    if (nextx == -1 || nextx == canvas_width / cell_width || nexty == -1 || nexty == canvas_height / cell_width || check_collision(nextx, nexty,snake_array) ) {
-
-        //restart game
-        init();
-        return;
-    }
-}
 
 //x and y 0-44
 function paint_cell(x,y)
@@ -181,8 +116,4 @@ function pauseGame() {
     pause == true ? pause = false : pause = true;
 }
 
-function paintscore() {
-    var score_text = "Score: " + score;
-    //passed with x and y co-ordinate to start painting
-    ctx.fillText(score_text, 5, canvas_height - 5);
-}
+

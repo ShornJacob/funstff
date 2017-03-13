@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    
+
     //create object from constructor function
     gameCube = new Component(30, 30, "../Images/plane.png", 10, 120, "image");
     myScore = new Component("30px", "Consolas", "black", 280, 40, "text");

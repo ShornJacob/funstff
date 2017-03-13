@@ -3,18 +3,27 @@
 <head>
     <title>Snake Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../styles/game2.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../scripts/game2/script_javascript.js"></script>
+    <!--JQuery File should load before Angular-->
     <script src="../scripts/game2/script_jquery.js"></script>
+    <script src="../scripts/game2/script_angular.js"></script>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div id="container">
+    <div id="container" ng-app="myApp" ng-controller="myCtrl">
         <canvas id="canvas" width="450" height="450"></canvas>
-
+        <p>Game Level</p>
+       <ul>
+           <li ng-class="{'active': level == 1}">Level 1</li>
+           <li>Level 2</li>
+           <li>Level 3</li>
+       </ul>
         <p>Arrow Keys or Swipe to direct the snake</p>
         <p>Spacebar to Pause / Resume.</p>
         <p>Game restarts if snake hits the boundary or itself.</p>

@@ -98,7 +98,9 @@
     <Content Include="Images\plane_down.png" />
     <Content Include="Images\plane_up.png" />
     <Content Include="lab.html" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -116,9 +118,11 @@
     <Content Include="scripts\game1\script_angular.js" />
     <Content Include="scripts\game1\script_javascript.js" />
     <Content Include="scripts\game1\script_jquery.js" />
+    <Content Include="scripts\game2\script_angular.js" />
     <Content Include="scripts\game2\script_javascript.js" />
     <Content Include="scripts\game2\script_jquery.js" />
     <Content Include="scripts\JavaScript.js" />
+    <Content Include="styles\game2.css" />
     <Content Include="styles\styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
