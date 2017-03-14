@@ -115,6 +115,7 @@
     <Content Include="index.html" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\game2\ang_js2.js" />
     <Content Include="scripts\game1\script_angular.js" />
     <Content Include="scripts\game1\script_javascript.js" />
     <Content Include="scripts\game1\script_jquery.js" />

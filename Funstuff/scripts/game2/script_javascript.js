@@ -13,9 +13,27 @@ var pause;
 var levels;
 var refreshrate;
 var widths;
-var score;
 
-function init() {
+var level2score = 300;
+
+var level3score = 600;
+
+
+//Key Value , Score:Refreshrate
+levels = {
+    0: 240,
+    level2score: 120,
+    level3score: 60
+};
+
+widths = {
+    0: 30,
+    level2score: 20,
+    level3score: 10
+}
+
+
+function jsinit() {
 
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
@@ -33,24 +51,10 @@ function init() {
     //creates first food
     create_food();
 
-    score = 0;
+ 
 
-    //Key Value , Score:Refreshrate
-    levels = {
-        0: 240,
-        300: 120,
-        600: 60
-    };
-
-    widths = {
-        0: 30,
-        300: 20,
-        600: 10
-    }
-    //timer that trigers paint function
-
-    //if (typeof game_loop != "undefined") clearInterval(game_loop);
-    //game_loop = setInterval(paint, 60);
+    
+   
 }
 
 //done only once, not called in refresh
@@ -115,5 +119,4 @@ function pauseGame() {
     //terniatry operator for pausing, resuming
     pause == true ? pause = false : pause = true;
 }
-
 
