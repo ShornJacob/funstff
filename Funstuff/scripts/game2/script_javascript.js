@@ -19,17 +19,19 @@ var level2score = 300;
 var level3score = 600;
 
 
+var score = 0;
+
 //Key Value , Score:Refreshrate
 levels = {
-    0: 240,
-    level2score: 120,
-    level3score: 60
+    [0]: 240,
+    [level2score]: 120,
+    [level3score]: 60
 };
 
 widths = {
-    0: 30,
-    level2score: 20,
-    level3score: 10
+    [0]: 30,
+    [level2score]: 20,
+    [level3score]: 10
 }
 
 

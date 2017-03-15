@@ -4,11 +4,15 @@
 
 app.expandController = function ($scope,$interval) {
 
+    //this should not be set by init
+    $scope.thresholdwatch = true;
+
     //js init cant access $scope objects. so anguler init
     $scope.ang_init = function () {
 
         //score variable is required for finding celll width 
-        $scope.score = 0;
+        //get from global js variable which stores score
+        $scope.score = score;
 
         //cell_width is used in jsnit
         cell_width = widths[$scope.score];
@@ -114,20 +118,29 @@ app.expandController = function ($scope,$interval) {
         //check hitting the wall or itself
         if (nextx == -1 || nextx >= right_boundary || nexty == -1 || nexty >= bottom_boundary || check_collision(nextx, nexty, snake_array)) {
 
-            //restart game
+            //restart game. 
+            
             jsinit();
+            
             $scope.ang_init();
             return;
         }
 
         //check score threshold
-        if ($scope.score == 300 || $scope.score == 600) {
+
+        // when score is a threshold, eg 300 , and snake is moving towards next target , timer is restarted for every frame
+        // threshold check prevents that
+        if (  ($scope.score == 300 || $scope.score == 600) && $scope.thresholdwatch == true ) {
             //stop numbers
             $scope.StopTimer();
 
             //restart timer with new numbers
             $scope.StartTimer();
 
+            $scope.thresholdwatch == false
+        }
+        else if ($scope.score > 300) {
+            $scope.thresholdwatch == true
         }
     }
 
