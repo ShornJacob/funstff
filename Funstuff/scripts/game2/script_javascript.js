@@ -19,7 +19,7 @@ var level2score = 300;
 var level3score = 600;
 
 
-var score = 0;
+var score;
 
 //Key Value , Score:Refreshrate
 levels = {
@@ -35,6 +35,7 @@ widths = {
 }
 
 
+//puts snake in the beginning position
 function jsinit() {
 
     canvas = document.getElementById('canvas');
@@ -50,7 +51,11 @@ function jsinit() {
 
     create_snake();
 
-    //creates first food
+    score = 0;
+
+    cell_width = widths[score];
+
+    //creates first food. food depends on score and cell width
     create_food();
 
  
