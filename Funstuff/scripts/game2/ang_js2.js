@@ -2,7 +2,7 @@
 
 //functions to be used by the controller that needs access to scope are defined here
 
-app.expandController = function ($scope,$interval) {
+app.expandController = function ($scope,$interval, $timeout) {
 
     //this should not be set by init
     $scope.thresholdwatch = true;
@@ -55,8 +55,13 @@ app.expandController = function ($scope,$interval) {
         //stop numbers
         $scope.StopTimer();
 
+        $timeout(10000);
+
         //positions snake in begining and sets score to zero
         jsinit();
+
+        //set scope score variable to zero
+        $scope.ang_init();
 
         //restart timer with new numbers
         $scope.StartTimer();

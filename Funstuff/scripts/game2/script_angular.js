@@ -1,10 +1,10 @@
 ﻿
 
-app.controller('myCtrl', function ($scope, $interval) {
+app.controller('myCtrl', function ($scope, $interval, $timeout) {
 
     //functions to be used by the controller that needs access to scope are defined in another file
     //a way to attch functions to scope in a seperate file
-    app.expandController($scope, $interval);
+    app.expandController($scope, $interval,$timeout);
 
     app.expandController2($scope);
 
