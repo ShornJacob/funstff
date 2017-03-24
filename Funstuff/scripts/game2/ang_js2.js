@@ -2,7 +2,7 @@
 
 //functions to be used by the controller that needs access to scope are defined here
 
-app.expandController = function ($scope,$interval, $timeout) {
+app.expandController = function ($scope, $interval, $timeout) {
 
     //this should not be set by init
     $scope.thresholdwatch = true;
@@ -16,7 +16,7 @@ app.expandController = function ($scope,$interval, $timeout) {
 
 
         $scope.Timer = null;
-      
+
     }
 
     //should be declared before calling. javascript style
@@ -49,13 +49,15 @@ app.expandController = function ($scope,$interval, $timeout) {
     }
 
     $scope.restart = function () {
- 
- 
+
+
 
         //stop numbers
         $scope.StopTimer();
 
-        $timeout(10000);
+        $scope.thresholdwatch = false
+
+        sleep(3000);
 
         //positions snake in begining and sets score to zero
         jsinit();
@@ -63,10 +65,9 @@ app.expandController = function ($scope,$interval, $timeout) {
         //set scope score variable to zero
         $scope.ang_init();
 
-        //restart timer with new numbers
-        $scope.StartTimer();
+        $scope.StartTimer()
 
-        $scope.thresholdwatch == false
+     
     }
 
     $scope.nextLevel = function () {
@@ -74,11 +75,11 @@ app.expandController = function ($scope,$interval, $timeout) {
         //stop numbers
         $scope.StopTimer();
 
-        //restart timer with new numbers
+        $scope.thresholdwatch = false
+
+        sleep(3000);
+
         $scope.StartTimer();
 
-        $scope.thresholdwatch == false
     }
-
-
 }

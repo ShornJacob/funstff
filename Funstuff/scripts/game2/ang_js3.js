@@ -103,9 +103,7 @@
         if (($scope.score == level2score || $scope.score == level3score) && $scope.thresholdwatch == true) {
             $scope.nextLevel();
         }
-        else {
-            $scope.thresholdwatch == true
-        }
+       
     }
 
 }

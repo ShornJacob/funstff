@@ -127,3 +127,9 @@ function pauseGame() {
     pause == true ? pause = false : pause = true;
 }
 
+//sleeos for ms seconds.
+function sleep(ms) {
+    var dt = new Date();
+    while (Date.now() - dt.getTime() <= ms) { }
+    return true;
+}
