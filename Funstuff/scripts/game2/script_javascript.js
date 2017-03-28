@@ -129,6 +129,8 @@ function pauseGame() {
 
 //sleeos for ms seconds.
 function sleep(ms) {
+
+    //alert("Inside Sleep");
     var dt = new Date();
     while (Date.now() - dt.getTime() <= ms) { }
     return true;

@@ -59,6 +59,8 @@ app.expandController = function ($scope, $interval, $timeout) {
 
         sleep(3000);
 
+       
+
         //positions snake in begining and sets score to zero
         jsinit();
 

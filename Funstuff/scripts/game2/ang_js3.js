@@ -20,9 +20,12 @@
         //stroke - the  border around rectangle . hit for snake
         ctx.strokeRect(0, 0, canvas_width, canvas_height);
 
+        var right_boundary = canvas_width / cell_width;
+        var bottom_boundary = canvas_height / cell_width;
 
         //x and y of next move
         //snake_array[0] is the head, first to be drawn
+        //it will be next i when incremented , not initiliased
         var nextx = snake_array[0].x;
         var nexty = snake_array[0].y;
 
@@ -42,6 +45,18 @@
         else if (snake_direction == "down") {
             nexty++;
         }
+
+
+        //check hitting the wall or itself
+        if (nextx == -1 || nextx > right_boundary || nexty == -1 || nexty > bottom_boundary || check_collision(nextx, nexty, snake_array)) {
+
+
+            //alert(nextx,nexty,"going to restart");
+            $scope.restart();
+            return;
+        }
+
+      
 
         //paint snake. head is drawn first. tail is last
         for (var i = 0; i < snake_array.length; i++) {
@@ -85,15 +100,11 @@
         //when food is consumed tail is food location. makes it first cell to be drawn. in this case it should have been called head since this is the first cell to be snake array and first to be drawn
         snake_array.unshift(tail);
 
-        var right_boundary = canvas_width / cell_width;
-        var bottom_boundary = canvas_height / cell_width;
+      
 
-        //check hitting the wall or itself
-        if (nextx == -1 || nextx >= right_boundary || nexty == -1 || nexty >= bottom_boundary || check_collision(nextx, nexty, snake_array)) {
-          
-            $scope.restart();
-            return;
-        }
+
+
+    
 
         //check score threshold
 
