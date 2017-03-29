@@ -14,9 +14,9 @@ var levels;
 var refreshrate;
 var widths;
 
-var level2score = 300;
+var level2score = 100;
 
-var level3score = 600;
+var level3score = 200;
 
 
 var score;

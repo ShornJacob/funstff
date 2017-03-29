@@ -82,6 +82,11 @@
             //incrase score by 100
             $scope.score = $scope.score + 100;
 
+            //everytime score increase set threshold check to false;
+            //makes it easy
+            //when score increases to next level, catch it set it to true some other place;
+            $scope.thresholdwatch = false;
+
             //create new food if snake hits the food
             create_food()
         }
@@ -111,8 +116,17 @@
         // when score is a threshold, eg 300 , and snake is moving towards next target , timer is restarted for every frame
         // threshold check prevents that.
         //new refresh rates only when thresholdwatch is true
-        if (($scope.score == level2score || $scope.score == level3score) && $scope.thresholdwatch == true) {
-            $scope.nextLevel();
+        if ($scope.score == level2score || $scope.score == level3score) {
+
+
+            //$scope.thresholdwatch is set to false in ang_init and everytime when score increases. set it to true when moving to next level
+
+            if ($scope.thresholdwatch == false) {
+                $scope.thresholdwatch = true;
+
+                $scope.nextLevel();
+            }
+            
         }
        
     }

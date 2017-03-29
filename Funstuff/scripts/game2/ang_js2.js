@@ -4,8 +4,7 @@
 
 app.expandController = function ($scope, $interval, $timeout) {
 
-    //this should not be set by init
-    $scope.thresholdwatch = true;
+   
 
     //js init cant access $scope objects. so anguler init
     $scope.ang_init = function () {
@@ -16,6 +15,8 @@ app.expandController = function ($scope, $interval, $timeout) {
 
 
         $scope.Timer = null;
+
+        $scope.thresholdwatch = false;
 
     }
 
@@ -55,11 +56,7 @@ app.expandController = function ($scope, $interval, $timeout) {
         //stop numbers
         $scope.StopTimer();
 
-        $scope.thresholdwatch = false
-
         sleep(3000);
-
-       
 
         //positions snake in begining and sets score to zero
         jsinit();
@@ -74,10 +71,9 @@ app.expandController = function ($scope, $interval, $timeout) {
 
     $scope.nextLevel = function () {
 
+
         //stop numbers
         $scope.StopTimer();
-
-        $scope.thresholdwatch = false
 
         sleep(3000);
 
