@@ -1,7 +1,41 @@
 ﻿app.expandController2 = function ($scope) {
 
+
+    $scope.paintGrid = function () {
+
+        ctx.fillStyle = "white";
+
+        ctx.fillRect(0, 0, canvas_width, canvas_height);
+
+        ctx.strokeStyle = "black";
+        //stroke - the  border around rectangle . hit for snake
+        ctx.strokeRect(0, 0, canvas_width, canvas_height);
+
+        $scope.countRows = canvas_width / cell_width;
+        $scope.countColumns = canvas_height / cell_width;
+
+
+        //Rows
+        for(i = 1; i < $scope.countRows; i++ )
+        {
+            var startpoint = { x: 0, y: i * cell_width }
+            var endpoint = { x: canvas_width, y: i * cell_width }
+            drawAGridLine(startpoint.x , startpoint.y , endpoint.x , endpoint.y)
+        }
+
+        //columns
+        for (i = 1; i < $scope.countColumns; i++) {
+            var startpoint = { x: i * cell_width, y: 0 }
+            var endpoint = { x: i * cell_width, y: canvas_height }
+            drawAGridLine(startpoint.x, startpoint.y, endpoint.x, endpoint.y)
+        }
+    }
+
+
     //paint function that is called on interval
     $scope.paint = function () {
+
+      
 
 
 
@@ -10,24 +44,15 @@
             return;
         }
 
-
-        ctx.fillStyle = "white";
-
-        ctx.fillRect(0, 0, canvas_width, canvas_height);
-
-        ctx.strokeStyle = "black";
-
-        //stroke - the  border around rectangle . hit for snake
-        ctx.strokeRect(0, 0, canvas_width, canvas_height);
-
-        var right_boundary = canvas_width / cell_width;
-        var bottom_boundary = canvas_height / cell_width;
-
         //x and y of next move
         //snake_array[0] is the head, first to be drawn
         //it will be next i when incremented , not initiliased
         var nextx = snake_array[0].x;
         var nexty = snake_array[0].y;
+
+        //preserve a copy, before incremneting real x and y
+        var presentx = nextx;
+        var presenty = nexty
 
         //pushes the first cell start point by one based on snake_direction
         //changes eithr x or y
@@ -48,7 +73,7 @@
 
 
         //check hitting the wall or itself
-        if (nextx == -1 || nextx > right_boundary || nexty == -1 || nexty > bottom_boundary || check_collision(nextx, nexty, snake_array)) {
+        if (nextx == -1 || presentx >= $scope.countRow || nexty == -1 || presenty >= $scope.countColumns || check_collision(nextx, nexty, snake_array)) {
 
 
             //alert(nextx,nexty,"going to restart");
@@ -58,12 +83,7 @@
 
       
 
-        //paint snake. head is drawn first. tail is last
-        for (var i = 0; i < snake_array.length; i++) {
-            var c = snake_array[i];
-
-            paint_cell(c.x, c.y);
-        }
+      
 
 
         //food also has to be refreshed
@@ -106,7 +126,8 @@
         snake_array.unshift(tail);
 
       
-
+        //draw snake before
+        drawsnake();
 
 
     
@@ -130,5 +151,8 @@
         }
        
     }
+
+ 
+
 
 }

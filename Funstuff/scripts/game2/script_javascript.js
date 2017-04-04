@@ -135,3 +135,22 @@ function sleep(ms) {
     while (Date.now() - dt.getTime() <= ms) { }
     return true;
 }
+
+
+var drawsnake = function () {
+
+    //paint snake. head is drawn first. tail is last
+    for (var i = 0; i < snake_array.length; i++) {
+        var c = snake_array[i];
+
+        paint_cell(c.x, c.y);
+    }
+}
+
+//https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
+var drawAGridLine = function(startx,starty,endx,endy)  {
+    ctx.beginPath();
+    ctx.moveTo(startx, starty);
+    ctx.lineTo(endx, endy);
+    ctx.stroke();
+}

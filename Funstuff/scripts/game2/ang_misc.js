@@ -31,6 +31,9 @@ app.expandController = function ($scope, $interval, $timeout) {
     //is called first and everytime when level changes
     $scope.StartTimer = function () {
 
+        //draw grid before timer starts ticking
+        $scope.paintGrid();
+
         //get therequired  refresh rate from the score
         refreshrate = levels[$scope.score];
         cell_width = widths[$scope.score];
@@ -56,13 +59,14 @@ app.expandController = function ($scope, $interval, $timeout) {
         //stop numbers
         $scope.StopTimer();
 
-        sleep(3000);
+        sleep(2000);
 
         //positions snake in begining and sets score to zero
         jsinit();
 
         //set scope score variable to zero
         $scope.ang_init();
+
 
         $scope.StartTimer()
 
@@ -75,9 +79,11 @@ app.expandController = function ($scope, $interval, $timeout) {
         //stop numbers
         $scope.StopTimer();
 
-        sleep(3000);
+        sleep(1000);
 
         $scope.StartTimer();
 
     }
+
+
 }
