@@ -31,8 +31,7 @@ app.expandController = function ($scope, $interval, $timeout) {
     //is called first and everytime when level changes
     $scope.StartTimer = function () {
 
-        //draw grid before timer starts ticking
-        $scope.paintGrid();
+       
 
         //get therequired  refresh rate from the score
         refreshrate = levels[$scope.score];
@@ -58,6 +57,8 @@ app.expandController = function ($scope, $interval, $timeout) {
 
         //stop numbers
         $scope.StopTimer();
+
+      
 
         sleep(2000);
 

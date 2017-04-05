@@ -44,21 +44,26 @@
             return;
         }
 
+        //need to clear screen every frame, so have to redraw grid evry frame
+        $scope.paintGrid();
+
         //x and y of next move
         //snake_array[0] is the head, first to be drawn
         //it will be next i when incremented , not initiliased
         var nextx = snake_array[0].x;
         var nexty = snake_array[0].y;
 
-        //preserve a copy, before incremneting real x and y
-        var presentx = nextx;
-        var presenty = nexty
+        //preserve a copy, before incremneting real x and y.
+        //this is the actual location on snake head in grid
+        var presentx = nextx + 1 ;
+        var presenty = nexty + 1
 
         //pushes the first cell start point by one based on snake_direction
         //changes eithr x or y
         if (snake_direction == "right") {
             //moving left. add startx by 1;
             nextx++;
+           
         }
         else if (snake_direction == "left") {
             //moving left. reduce startx by 1;
@@ -73,8 +78,11 @@
 
 
         //check hitting the wall or itself
-        if (nextx == -1 || presentx >= $scope.countRow || nexty == -1 || presenty >= $scope.countColumns || check_collision(nextx, nexty, snake_array)) {
+        if (nextx == -1 || nextx == $scope.countRows || nexty == -1 || nexty == $scope.countColumns || check_collision(nextx, nexty, snake_array)) {
 
+            //paint grid and red snake before pausing. paint grid clears old blue snake
+            $scope.paintGrid();
+            drawsnake('red');
 
             //alert(nextx,nexty,"going to restart");
             $scope.restart();
@@ -87,7 +95,7 @@
 
 
         //food also has to be refreshed
-        paint_cell(food.x, food.y);
+        paint_cell(food.x, food.y,'green');
 
         //paint score. angular function . so that in it can access angular score variable
         $scope.paintscore();

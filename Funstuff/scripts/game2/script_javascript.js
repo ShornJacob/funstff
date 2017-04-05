@@ -98,9 +98,9 @@ function create_food() {
 
 
 //x and y 0-44
-function paint_cell(x,y)
+function paint_cell(x,y,color)
 {
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = color;
 
     //cell_width set at 10
     ctx.fillRect(x * cell_width, y * cell_width, cell_width, cell_width);
@@ -137,13 +137,14 @@ function sleep(ms) {
 }
 
 
-var drawsnake = function () {
+//default parameters in ES2015
+function drawsnake(color='blue') {
 
     //paint snake. head is drawn first. tail is last
     for (var i = 0; i < snake_array.length; i++) {
         var c = snake_array[i];
 
-        paint_cell(c.x, c.y);
+        paint_cell(c.x, c.y,color);
     }
 }
 
