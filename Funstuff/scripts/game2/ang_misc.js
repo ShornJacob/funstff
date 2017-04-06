@@ -58,9 +58,17 @@ app.expandController = function ($scope, $interval, $timeout) {
         //stop numbers
         $scope.StopTimer();
 
-      
+        //alert("Entering sleep");
 
-        sleep(2000);
+        //paint grid and red snake before pausing. paint grid clears old blue snake
+        $scope.clearGrid();
+
+        $scope.drawGrid();
+
+        //alert("colouring snake");
+        drawsnake('red');
+
+        //sleep(3000);
 
         //positions snake in begining and sets score to zero
         jsinit();
@@ -69,8 +77,10 @@ app.expandController = function ($scope, $interval, $timeout) {
         $scope.ang_init();
 
 
-        $scope.StartTimer()
+       $timeout($scope.StartTimer, 2000);
 
+        //$scope.StartTimer()
+        return;
      
     }
 
@@ -87,4 +97,33 @@ app.expandController = function ($scope, $interval, $timeout) {
     }
 
 
+    $scope.clearGrid = function () {
+        ctx.fillStyle = "white";
+
+        ctx.fillRect(0, 0, canvas_width, canvas_height);
+
+        ctx.strokeStyle = "black";
+        //stroke - the  border around rectangle . hit for snake
+        ctx.strokeRect(0, 0, canvas_width, canvas_height);
+
+
+       
+    }
+
+
+    $scope.drawGrid = function () {
+        //Rows
+        for (i = 1; i < $scope.countRows; i++) {
+            var startpoint = { x: 0, y: i * cell_width }
+            var endpoint = { x: canvas_width, y: i * cell_width }
+            drawAGridLine(startpoint.x, startpoint.y, endpoint.x, endpoint.y)
+        }
+
+        //columns
+        for (i = 1; i < $scope.countColumns; i++) {
+            var startpoint = { x: i * cell_width, y: 0 }
+            var endpoint = { x: i * cell_width, y: canvas_height }
+            drawAGridLine(startpoint.x, startpoint.y, endpoint.x, endpoint.y)
+        }
+    }
 }
