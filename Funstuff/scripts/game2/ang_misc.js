@@ -13,6 +13,7 @@ app.expandController = function ($scope, $interval, $timeout) {
         //get from global js variable which stores score
         $scope.score = score;
 
+        $scope.level = level;
 
         $scope.Timer = null;
 
@@ -91,6 +92,8 @@ app.expandController = function ($scope, $interval, $timeout) {
         $scope.StopTimer();
 
         sleep(1000);
+
+        $scope.level = $scope.level + 1
 
         $scope.StartTimer();
 

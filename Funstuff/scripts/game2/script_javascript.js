@@ -13,6 +13,7 @@ var pause;
 var levels;
 var refreshrate;
 var widths;
+var level;
 
 var level2score = 100;
 
@@ -30,7 +31,7 @@ levels = {
 
 widths = {
     [0]: 30,
-    [level2score]: 20,
+    [level2score]: 15,
     [level3score]: 10
 }
 
@@ -52,6 +53,8 @@ function jsinit() {
     create_snake();
 
     score = 0;
+
+    level = 1;
 
     cell_width = widths[score];
 
