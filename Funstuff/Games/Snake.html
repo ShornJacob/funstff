@@ -19,12 +19,12 @@
 </head>
 <body>
     <div id="container" ng-app="myApp" ng-controller="myCtrl">
-        <canvas id="canvas" width="450" height="450"></canvas>
+        <canvas id="canvas" width="450" height="480"></canvas>
         <p>Game Level</p>
        <ul>
-           <li ng-class="{'active': level == 1}">Level 1</li>
-           <li ng-class="{'active': level == 2}">Level 2</li>
-           <li ng-class="{'active': level == 3}">Level 3</li>
+           <li ng-class="{'active': level == 1}" class="canvaswide">Level 1 (Score 0-200)</li>
+           <li ng-class="{'active': level == 2}" class="canvaswide">Level 2 (Score 300-500)</li>
+           <li ng-class="{'active': level == 3}" class="canvaswide">Level 3 (Score > 500)</li>
        </ul>
         <p>Arrow Keys or Swipe to direct the snake</p>
         <p>Spacebar to Pause / Resume.</p>

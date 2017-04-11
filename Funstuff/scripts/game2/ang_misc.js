@@ -13,7 +13,7 @@ app.expandController = function ($scope, $interval, $timeout) {
         //get from global js variable which stores score
         $scope.score = score;
 
-        $scope.level = level;
+        //$scope.level = level;
 
         $scope.Timer = null;
 
@@ -25,7 +25,8 @@ app.expandController = function ($scope, $interval, $timeout) {
     $scope.paintscore = function () {
         var score_text = "Score: " + $scope.score;
         //passed with x and y co-ordinate to start painting
-        ctx.fillText(score_text, 5, canvas_height - 5);
+        //added extar 30. height made to large to display score in clear space rather than in grid
+        ctx.fillText(score_text, 5, canvas_height - 5 );
     }
 
 
@@ -33,10 +34,15 @@ app.expandController = function ($scope, $interval, $timeout) {
     $scope.StartTimer = function () {
 
        
-
+      
         //get therequired  refresh rate from the score
         refreshrate = levels[$scope.score];
         cell_width = widths[$scope.score];
+
+        //timer started only when game moves to next level. level should be set to zero on first level. thereby setting level to 1 here
+        level = level + 1
+
+        $scope.level = level
 
 
         //just the name of the function in interval, no ()
@@ -91,9 +97,10 @@ app.expandController = function ($scope, $interval, $timeout) {
         //stop numbers
         $scope.StopTimer();
 
+        //sleep is used for pausing between levels
         sleep(1000);
 
-        $scope.level = $scope.level + 1
+     
 
         $scope.StartTimer();
 
@@ -107,7 +114,7 @@ app.expandController = function ($scope, $interval, $timeout) {
 
         ctx.strokeStyle = "black";
         //stroke - the  border around rectangle . hit for snake
-        ctx.strokeRect(0, 0, canvas_width, canvas_height);
+        ctx.strokeRect(0, 0, canvas_width, grid_height);
 
 
        
@@ -125,7 +132,7 @@ app.expandController = function ($scope, $interval, $timeout) {
         //columns
         for (i = 1; i < $scope.countColumns; i++) {
             var startpoint = { x: i * cell_width, y: 0 }
-            var endpoint = { x: i * cell_width, y: canvas_height }
+            var endpoint = { x: i * cell_width, y: grid_height }
             drawAGridLine(startpoint.x, startpoint.y, endpoint.x, endpoint.y)
         }
     }

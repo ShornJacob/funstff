@@ -4,6 +4,7 @@ var canvas;
 var ctx;
 var canvas_width;
 var canvas_height;
+var grid_height;
 var cell_width;
 var snake_array;
 var snake_direction;
@@ -15,9 +16,9 @@ var refreshrate;
 var widths;
 var level;
 
-var level2score = 100;
+var level2score = 300;
 
-var level3score = 200;
+var level3score = 600;
 
 
 var score;
@@ -44,7 +45,11 @@ function jsinit() {
 
 
     canvas_width = canvas.width;
+   
     canvas_height = canvas.height;
+
+    //canvas height is made bit large to accomodate extra space to display Score
+    grid_height = canvas_height-30
 
     pause = false;
     snake_direction = "right";
@@ -54,7 +59,7 @@ function jsinit() {
 
     score = 0;
 
-    level = 1;
+    level = 0;
 
     cell_width = widths[score];
 
@@ -91,7 +96,7 @@ function create_food() {
     //random member between 0-44 for x and y co-ordinates to place food
     food = {
         x: Math.round(Math.random() * ((canvas_width - cell_width) / cell_width)),
-        y: Math.round(Math.random() * ((canvas_height - cell_width) / cell_width)),
+        y: Math.round(Math.random() * ((grid_height - cell_width) / cell_width)),
     };
 
  

@@ -6,7 +6,7 @@
         $scope.clearGrid();
 
         $scope.countRows = canvas_width / cell_width;
-        $scope.countColumns = canvas_height / cell_width;
+        $scope.countColumns = grid_height / cell_width;
 
         $scope.drawGrid();
      
