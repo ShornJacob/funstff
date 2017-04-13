@@ -106,7 +106,7 @@
     </Content>
     <Content Include="XMLView\index.html" />
     <Content Include="XMLView\scripts\angular_init.js" />
-    <Content Include="XMLView\scripts\func_def.js" />
+    <Content Include="XMLView\scripts\func_defs.js" />
     <Content Include="XMLView\scripts\js_init.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
